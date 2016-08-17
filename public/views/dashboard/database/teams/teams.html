@@ -1,0 +1,80 @@
+<div role="tabpanel" class="tab-pane " id="teams" ng-controller="teamController">
+
+    <!-- SHOW WHEN THE TEAM ADDED -->
+    <div ng-show="bad.success" class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <div ng-repeat="message in bad.message">
+            [[ message[0] ]]
+        </div>
+    </div>
+    <!-- End Errors BAR -->
+    <div class="item_clubs_content">
+        <div id="boxes-styles">
+            <ul>
+                <li class="new-item">
+                    <img class="hover_out" src="assets/images/dashboard/icon_add_team.png"
+                         alt="">
+                    <img data-toggle="modal" data-target="#myModal" class="hover_in"
+                         src="assets/images/dashboard/icon_add_team_hover.png" alt="">
+                    <p>NEW TEAM</p>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
+        </div>
+    </div>
+    <form name="create_new_teams_form" method="post" action="/teams/create" >
+
+        [[CSRF_FILED]]
+        <!--Modal Add Team-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="row modal_head">
+                        <p aria-label="Close">X</p>
+                        <p>_</p>
+                    </div>
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalLabel">
+                            <img class="img-responsive" src="assets/images/dashboard/icon_shield.png" alt="">
+                        </h4>
+                        <p>Create New Team</p>
+                        <button type="button" ng-click="submit(teamsData)" class="save_change" data-dismiss="modal" aria-label="Close">
+                            SAVE<br> & ADD
+                        </button>
+                    </div>
+                    <div class="clearfix modal-body" ng-controller="MainCtrl">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4 forms" style="max-height: 100px; overflow: auto;">
+                                    <select class="form__input" name="stadium_id" ng-model="teamsData.stadium_id">
+                                        <option ng-repeat="stadium in stadiums" value="[[ stadium.id ]]">[[ stadium.name ]]</option>
+                                    </select>
+                                    <span class="span_label">SELECTED STADIUM</span>
+                                </div>
+                                <div class="col-sm-4 forms">
+                                    <select class="form__input" name="user_id" ng-model="teamsData.user_id">
+                                        <option ng-repeat="user in users" value="[[ user.id ]]">[[ user.name ]] [[user.last_name]]</option>
+                                    </select>
+                                    <span class="span_label">CONTACT PERSON</span>
+                                </div>
+                                <div class="col-sm-4 forms">
+                                    <select class="form__input" name="type" ng-model="teamsData.type">
+                                        <option value="MEN">Men</option>
+                                        <option value="WOMEN">Women</option>
+                                        <option value="YOUTH">Youth</option>
+                                    </select>
+                                    <span class="span_label">TEAM TYPE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal-->
+
+    </form>
+</div>

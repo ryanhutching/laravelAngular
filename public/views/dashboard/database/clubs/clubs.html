@@ -1,0 +1,219 @@
+<div role="tabpanel" class="tab-pane active" id="clubs" ng-controller="clubsController">
+
+    <!-- SHOW WHEN THE CLUB ADDED -->
+    <div ng-show="bad.success" class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <div ng-repeat="message in bad.message">
+            [[ message[0] ]]
+        </div>
+    </div>
+    <!-- End Errors BAR -->
+    <div class="item_clubs_content">
+        <div id="boxes-styles">
+            <ul>
+                <li class="new-item">
+                    <img class="hover_out" src="assets/images/dashboard/icon_add_team.png"
+                         alt="">
+                    <img data-toggle="modal" data-target="#myModal" class="hover_in"
+                         src="assets/images/dashboard/icon_add_team_hover.png" alt="">
+                    <p>NEW CLUB</p>
+                </li>
+
+                <!-- SHOW CLUBS -->
+                <li class="single-item" ng-repeat="club in clubs">
+                    <img class="img-responsive" src="/assets/images/clubs/croped/[[club.logo]]"
+                         alt=""/>
+                    <div class="clubs_info">
+                        <p>[[club.name ]]</p>
+                        <p>.</p>
+                    </div>
+                    <div class="manage" data-club_id="[[club.id]]"><p>Manage Club</p></div>
+                </li>
+                <!-- END SHOW CLUBS ANGULAR -->
+                <li class="clearfix"></li>
+            </ul>
+        </div>
+    </div>
+    <form ng-controller="CropController" name="create_new_clubs_form" method="post" action="/clubs/create" enctype="multipart/form-data">
+
+        [[CSRF_FILED]]
+        <!--Modal Add Team-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="row modal_head">
+                        <p aria-label="Close">X</p>
+                        <p>_</p>
+                    </div>
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalLabel">
+                            <img class="img-responsive" src="assets/images/dashboard/icon_shield.png" alt="">
+                        </h4>
+                        <p>Create New Club</p>
+                        <button type="button" ng-click="submit(clubsData)" class="save_change" data-dismiss="modal" aria-label="Close">
+                            SAVE<br> & ADD
+                        </button>
+                    </div>
+                    <div class="clearfix modal-body" ng-controller="MainCtrl">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-2 img_upload">
+                                    <div data-toggle="modal" data-target="#myModal1" for="upload_logo"
+                                         id="upload_logo_label">
+                                        <p>
+                                            <img id="full_img" class="upload_out empty_img" ng-src="[[$parent.clubsData.myCroppedImage]]" alt="" />
+                                            <img id="empty_img" class="upload_out" src="assets/images/dashboard/icon_photo.png" alt="" />
+                                        </p>
+                                        <p>
+                                            <img class="upload_in"
+                                                 src="assets/images/dashboard/icon_photo_hover.png" alt="">
+                                        </p>
+                                        <p>ADD PHOTO</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-9 forms">
+                                            <input class="form__input" type="text" name="name" ng-model="clubsData.name">
+                                            <span class="span_label">NAME</span>
+                                        </div>
+                                        <div class="col-sm-3 forms">
+                                            <input class="form__input" type="text" name="short_name" ng-model="clubsData.short_name">
+                                            <span class="span_label">SHORT NAME</span>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-sm-12 forms">
+                                            <textarea class="form__input" type="text" name="description" ng-model="clubsData.description"
+                                            ></textarea>
+                                            <span class="span_label">TEAM DESCRIPTION & DETAILS </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 forms" style="max-height: 100px; overflow: auto;">
+                                    <select class="form__input" id="select" name="stadium_id" ng-model="clubsData.stadium_id">
+                                        <option ng-repeat="stadium in stadiums" value="[[ stadium.id ]]">[[ stadium.name ]]</option>
+                                    </select>
+                                    <span class="span_label">SELECTED STADIUM</span>
+                                </div>
+                                <div class="col-sm-4 forms">
+                                    <select class="form__input" id="select" name="user_id" ng-model="clubsData.user_id">
+                                        <option ng-repeat="user in users" value="[[ user.id ]]">[[ user.name ]] [[user.last_name]]</option>
+                                    </select>
+                                    <span class="span_label">CONTACT PERSON</span>
+                                </div>
+                                <div class="col-sm-4 forms">
+                                    <input class="form__input" type="text" name="phone" ng-model="clubsData.phone">
+                                    <span class="span_label">PHONE NUMBERS</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 forms">
+                                    <input class="form__input" type="text" id="address" vs-google-autocomplete
+                                           ng-model="address.name"
+                                           vs-place="address.place"
+                                           vs-place-id="address.components.placeId"
+                                           vs-street-number="address.components.streetNumber"
+                                           vs-street="address.components.street"
+                                           vs-city="address.components.city"
+                                           vs-state="address.components.state"
+                                           vs-country-short="address.components.countryCode"
+                                           vs-country="address.components.country"
+                                           vs-post-code="address.components.postCode"
+                                           vs-district="address.components.district"
+                                           vs-latitude="address.components.location.lat"
+                                           vs-longitude="address.components.location.long">
+                                    <span class="span_label">Postal Address</span>
+                                    <div class="validated">
+                                        <p>VALIDATED</p>
+                                        <p><i class="fa fa-map-marker"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MAPS -->
+
+                        <div class="row">
+                            <div class="col-sm-12" id="mapmap">
+
+                                <!--------------------->
+                                <!--------------------->
+
+                                <my-map></my-map>
+                                <!--------------------->
+                                <!--------------------->
+
+                            </div>
+                        </div>
+                        <div class="row well-lg">
+                            <div class="col-sm-12">
+                                <p>This Address will be saved as</p>
+                                <span id="validated_address">[[address.name]]</span>
+                                <button class="btn btn-default" id="confirm_address" ng-click="validateAddress()"
+                                        type="button">Confirm
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- End MAPS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal-->
+
+        <!-- Image Croping -->
+        <div class="modal fade " id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+            <div class="modal-dialog" role="document1" style="width:45%;">
+                <div class="modal-content">
+                    <div class="row modal_head">
+                        <p class="close_image_modal" aria-label="Close">X</p>
+                        <p>_</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal1" aria-label="Close"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">
+                            <img class="img-responsive" src="assets/images/dashboard/icon_photo.png" alt="">
+                        </h4>
+                        <p>Upload Logo</p>
+                    </div>
+                    <div class="modal-body clearfix">
+                        <div class="col-sm-4 clearfix">
+
+                            <p style="text-align: center">Priview</p>
+                            <div class="crop_bg">
+                                <div>
+                                    <img class="img-responsive" ng-src="[[myCroppedImage]]"/>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <label class="btn btn-primary">UPLOAD PHOTO
+                                    <input type="file" id="fileInput" style="display: none;" name="logo" form="">
+                                </label>
+                                <button class="btn btn-success close_image_modal" type="button" ng-click="upload()">SAVE PHOTO</button>
+                                <button class="btn btn-danger close_image_modal" ng-click="cancel()">CANCEL</button>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-8 clearfix">
+                            <p style="text-align: center">Crop Your Photo</p>
+                            <div class="crop_bg">
+                                <div>
+                                    <div class="cropArea">
+                                        <img-crop area-type="square" image="myImage" result-image="myCroppedImage"></img-crop>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Image Cropping -->
+    </form>
+</div>

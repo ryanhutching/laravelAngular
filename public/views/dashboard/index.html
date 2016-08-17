@@ -1,0 +1,78 @@
+<header>
+    <div class="container header_color">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a id="navbar-brand" class="navbar-brand" href="#">
+                    <img class="img-responsive" src="assets/images/dashboard/logo.png">
+                </a>
+                <ul class="nav navbar-nav navbar-right mobile_nav">
+                    <li class="search search_icon"><a href="#"><img
+                            src="assets/images/dashboard/icon_search.png"></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img class="language-icon"
+                                 src="assets/images/dashboard/icon_language.png">
+                            <span>EN</span>
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">EN</a></li>
+                            <li><a href="#">RUS</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="settings-icon" src="assets/images/dashboard/icon_settings.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="nav" class="nav navbar-nav">
+                    <li><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Leagues</a></li>
+                    <li><a href="#">Fixtures</a></li>
+                    <li class="active"><a ui-sref="dashboard.database">Database</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right device_nav">
+                    <li class="search search_icon">
+                        <a href="#"><img src="assets/images/dashboard/icon_search.png"></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           ria-expanded="false">
+                            <img class="language-icon" src="assets/images/dashboard/icon_language.png">
+                            <span>EN</span>
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">EN</a></li>
+                            <li><a href="#">RUS</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="settings-icon" src="assets/images/dashboard/icon_settings.png">
+                        </a>
+                        <a ui-sref="index.database"></a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+        <form class="search_block">
+            <input name="field1" placeholder="Triggered on Focus/Blur"/>
+            <label class="fade"></label>
+        </form>
+    </div>
+</header>
+<div ui-view="content">
+    <!--<div ng-include="'/views/dashboard/database/index.html'"></div>-->
+    <h2 class="text-center">Some Body</h2>
+</div>

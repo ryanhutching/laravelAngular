@@ -1,0 +1,57 @@
+<!-- Database Header -->
+<div class="container">
+    <div class="row">
+        <div class="nav1">
+            <ul class="nav-links">
+                <li class="active"><a href="">All</a></li>
+                <li><a href="">Men</a></li>
+                <li><a href="">Women</a></li>
+                <li><a href="">Youth</a></li>
+                <li><a href="">Recently Changed</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Database Header -->
+
+<!--Content-->
+<div id="clubs_content">
+
+    <!-- CONTENT -->
+    <div class="container my_tabs">
+        <div class="row">
+            <div class="col-sm-2">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs database_nav" role="tablist">
+                    <li role="presentation" class="active">
+                        <a ui-sref="dashboard.database.clubs">Clubs</a>
+                    </li>
+                    <li role="presentation">
+                        <a ui-sref="dashboard.database.stadiums">Stadiums</a>
+                    </li>
+                    <li role="presentation" >
+                        <a ui-sref="dashboard.database.teams">Teams</a>
+                    </li>
+                    <li role="presentation">
+                        <a ui-sref="dashboard.database.peoples">People</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-10">
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--Clubs blade template from dashboard/database/clubs/clubs.blade-->
+                    <!--Stadiums blade template from dashboard/database/stadiums/stadiums.blade-->
+                    <!--Teams blade template from dashboard/database/teams/teams.blade-->
+                    <!--People blade template from dashboard/database/people/peoples.blade-->
+                    <div ui-view="database_tabs">
+                        <div ng-include="'/views/dashboard/database/clubs/clubs.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT -->
+</div>
+<!--End Content-->

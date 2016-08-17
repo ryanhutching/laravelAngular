@@ -1,0 +1,62 @@
+<div role="tabpanel" class="tab-pane" id="peoples" ng-controller="peopleController">
+
+    <!-- SHOW WHEN THE PEOPLES ADDED -->
+    <div ng-show="bad.success" class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <div ng-repeat="message in bad.message">
+            [[ message[0] ]]
+        </div>
+    </div>
+    <!-- End Errors BAR -->
+    <div class="item_clubs_content">
+        <div id="boxes-styles">
+            <ul>
+                <li class="new-item">
+                    <img class="hover_out" src="assets/images/dashboard/icon_add_contact.png"
+                         alt="">
+                    <img data-toggle="modal" data-target="#myModal" class="hover_in"
+                         src="assets/images/dashboard/icon_add_contact_hover.png" alt="">
+                    <p>NEW PEOPLE</p>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
+        </div>
+    </div>
+    <form name="create_new_peoples_form" method="post" action="/peoples/create" >
+
+        [[CSRF_FILED]]
+        <!--Modal Add Team-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="row modal_head">
+                        <p aria-label="Close">X</p>
+                        <p>_</p>
+                    </div>
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalLabel">
+                            <img class="img-responsive" src="assets/images/dashboard/icon_shield.png" alt="">
+                        </h4>
+                        <p>Create New Team</p>
+                        <button type="button" ng-click="submit(teamsData)" class="save_change" data-dismiss="modal" aria-label="Close">
+                            SAVE<br> & ADD
+                        </button>
+                    </div>
+                    <div class="clearfix modal-body" ng-controller="MainCtrl">
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal-->
+
+    </form>
+
+</div>
